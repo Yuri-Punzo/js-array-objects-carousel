@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/CSS/style.css">
     <title>Array Objects Carousel</title>
 </head>
 <body>
     
-
-
+    <section class="carousel_section text-light">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-6 bg-light pt-3">
+                    <div class="carousel">
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <button onclick="prevFunction()" class="my-2" id="previous">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="nextFunction()" class="my-2" id="next">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="./assets/JS/main.js"></script>
 </body>

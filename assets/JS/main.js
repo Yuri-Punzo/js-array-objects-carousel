@@ -50,3 +50,80 @@ const images = [
     }
 ];
 */
+
+
+
+
+/* creo array con i path delle immagini */
+const slidesList = [
+    "./assets/img/01 Spiderman - Miles Morales.webp",
+    "./assets/img/02 Ratchet & Clank - Rift Apart.webp",
+    "./assets/img/03 Fortnite.webp",
+    "./assets/img/04 Stray.webp",
+    "./assets/img/05 Avengers.webp"
+]
+
+/* seleziono dove mettere le immagini */
+const slidesElement = document.querySelector(".carousel");
+
+/* getto la base per il mio counter e per poi passare alle imagini successive con ++ 
+   (inoltre se vado a cambiare "= 0" in "= X" posso far partire le slide da un img diversa)*/
+let visibleImg = 0;
+
+/*  -creo un ciclo for
+    -al suo interno creo una var slideslocation che prenda l'url della img dall'array
+    -grazie alla var slidesHtml vado ad assegnare la classe visible solo alla prima immagine (i === 0) usando il metodo if ristretto visto stamani con Fabio
+    -con .insertAdjacentHTML di fatto inserisco l'immagine nell'html */
+for (let i = 0; i < slidesList.length; i++) {
+    const slideLocation = slidesList[i]
+    console.log(slideLocation);
+    const slidesHtml = `<img class="${i === visibleImg ? 'visible' : ''}" src="${slideLocation}" alt="">`
+    slidesElement.insertAdjacentHTML("beforeend", slidesHtml)
+    console.log(slidesHtml);
+}
+
+/* creo due variabile che selezionino i pulsanti per farli poi funzionare */
+const prevButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+
+/*  adesso voglio cambiare immagine con il click di next:
+    vado a selezionare tutte le immagini con una var allImg
+    creo una variabile (currentSlide) per poter selezionare l'img visibile al momento
+    (dato che visibleImg ha valore zero pescherà la prima immagine)
+    poi gli tolgo la classe visible con classlist.remove facendola sparire
+    devo far andare avanti il counter di visibleImg con ++
+    (var visibleImg creata prima del ciclo for e che di fatto "tiene il conto" per noi)
+    inserito if, leggi sotto perché etcc..
+    dopo if creo una var nextImg per l'img a seguire
+    assegno alla img a seguire la classe visible per farla apparire */
+function nextFunction() {
+    const allImg = document.querySelectorAll('.carousel > img');
+    console.log("all img", allImg);
+    const currentSlide = allImg[visibleImg];
+    console.log(currentSlide);
+    currentSlide.classList.remove("visible");
+    visibleImg++;
+    /* il problema si creava qua quando dopo l'incremento i numeri di visibleImg andavano fuori dal range dell'array (0-4) con questo if, controllo il numero e lo modifico per farlo ciclare  0 1 2 3 4 0 1 2 3 4 0 1 etcc.  */
+    if (visibleImg === slidesList.length) {
+        visibleImg = 0;
+    }
+    const nextImg = allImg[visibleImg];
+    console.log(nextImg);
+    nextImg.classList.add("visible")
+}
+
+/* ora ricopio da sopra ma con -- per fare il previous img */
+function prevFunction() {
+    const allImg = document.querySelectorAll('.carousel > img');
+    const currentSlide = allImg[visibleImg];
+    console.log(currentSlide);
+    currentSlide.classList.remove("visible");
+    visibleImg--;
+    /* stessa cosa di sopra ma al rovescio, se il valore scende sotto lo zero lo riportiamo al numero massimale dell'array, ovvero 4*/
+    if (visibleImg === -1) {
+        visibleImg = 4;
+    }
+    const prevImg = allImg[visibleImg];
+    console.log(prevImg);
+    prevImg.classList.add("visible")
+}

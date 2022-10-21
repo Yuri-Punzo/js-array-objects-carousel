@@ -6,5 +6,17 @@
 
 body {
     background-color: rgb(36, 36, 36);
-    color: white;
+}
+
+img {
+    max-width: 100%;
+    display: none;
+}
+
+.row {
+    height: 100vh;
+}
+
+.visible {
+    display: block;
 }
