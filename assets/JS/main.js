@@ -51,9 +51,6 @@ const images = [
 ];
 */
 
-
-
-
 /* creo array con i path delle immagini */
 const slidesList = [
     "./assets/img/01 Spiderman - Miles Morales.webp",
