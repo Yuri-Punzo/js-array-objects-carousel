@@ -12,6 +12,8 @@ img {
     max-width: 100%;
     display: none;
     height: 500px;
+    object-fit: contain;
+    margin: auto;
 }
 
 .row {
@@ -20,4 +22,9 @@ img {
 
 .visible {
     display: block;
+}
+
+h4,
+p {
+    display: none;
 }

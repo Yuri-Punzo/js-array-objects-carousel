@@ -59,7 +59,7 @@ for (let i = 0; i < slidesList.length; i++) {
     const slideListObjects = slidesList[i];
     //console.log(slideListObjects);
     //console.log(slideListObjects.image);
-    const slidesHtml = `<img class="${i === visibleImg ? 'visible' : ''}" src="./assets/${slideListObjects.image}" alt="">`
+    const slidesHtml = `<h4 class="${i === visibleImg ? 'visible' : ''}">${slideListObjects.title}</h4><p class="${i === visibleImg ? 'visible' : ''}">${slideListObjects.text}</p><img class="${i === visibleImg ? 'visible' : ''}" src="./assets/${slideListObjects.image}" alt="">`
     slidesElement.insertAdjacentHTML("beforeend", slidesHtml)
     //console.log(slidesHtml);
 }
@@ -80,30 +80,50 @@ const nextButton = document.getElementById("next");
     assegno alla img a seguire la classe visible per farla apparire */
 function nextFunction() {
     const allImg = document.querySelectorAll('.carousel > img');
+    const allTitle = document.querySelectorAll('.carousel > h4');
+    const allParagraph = document.querySelectorAll('.carousel > p');
     //console.log("all img", allImg);
-    const currentSlide = allImg[visibleImg];
-    //console.log(currentSlide);
-    currentSlide.classList.remove("visible");
+    const currentSlideImage = allImg[visibleImg];
+    const currentSlideTitle = allTitle[visibleImg];
+    const currentSlideParagraph = allParagraph[visibleImg];
+    //console.log(currentSlideImage);
+    currentSlideImage.classList.remove("visible");
+    currentSlideTitle.classList.remove("visible");
+    currentSlideParagraph.classList.remove("visible");
     visibleImg++;
     if (visibleImg === slidesList.length) {
         visibleImg = 0;
     }
     const nextImg = allImg[visibleImg];
+    const nextTitle = allTitle[visibleImg];
+    const nextParagraph = allParagraph[visibleImg];
     //console.log(nextImg);
     nextImg.classList.add("visible")
+    nextTitle.classList.add("visible")
+    nextParagraph.classList.add("visible")
 }
 
 /* ora ricopio da sopra ma con -- per fare il previous img */
 function prevFunction() {
     const allImg = document.querySelectorAll('.carousel > img');
+    const allTitle = document.querySelectorAll('.carousel > h4');
+    const allParagraph = document.querySelectorAll('.carousel > p');
     const currentSlide = allImg[visibleImg];
+    const currentSlideTitle = allTitle[visibleImg];
+    const currentSlideParagraph = allParagraph[visibleImg];
     //console.log(currentSlide);
     currentSlide.classList.remove("visible");
+    currentSlideTitle.classList.remove("visible");
+    currentSlideParagraph.classList.remove("visible");
     visibleImg--;
     if (visibleImg === -1) {
         visibleImg = 4;
     }
     const prevImg = allImg[visibleImg];
+    const prevTitle = allTitle[visibleImg];
+    const prevParagraph = allParagraph[visibleImg];
     //console.log(prevImg);
     prevImg.classList.add("visible")
+    prevTitle.classList.add("visible")
+    prevParagraph.classList.add("visible")
 }
